@@ -27,8 +27,13 @@ ollama run <ollama-username>/<ollama-model-name> --verbose
 --verbose is useful for gauging model performance, with information about prompt evaluation time, and tokens per second. 
 
 For a specific example, here's what I did for the picard model:
-ollama create picard:1.7b-q8_0 -f Modelfile
-ollama run picard:1.7b-q8_0 --verbose
-ollama cp picard:1.7b-q8_0 noahpunintended/picard:1.7b-q8_0
-ollama push noahpunintended/picard:1.7b-q8_0
-ollama run noahpunintended/picard:1.7b-q8_0 --verbose
+ollama create picard:0.36b-f16 -f Modelfile
+ollama run picard:0.36b-f16 --verbose
+ollama cp picard:0.36b-f16 noahpunintended/picard:0.36b-f16
+ollama push noahpunintended/picard:0.36b-f16
+ollama run noahpunintended/picard:0.36b-f16 --verbose
+
+
+Note: bf16 is not yet supported in ollama (https://github.com/ollama/ollama/issues/4670)
+
+In this case it may be worth training in f16 rather than bf16, sorry for just saying this now!
