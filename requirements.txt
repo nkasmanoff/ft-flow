@@ -1,0 +1,12 @@
+datasets
+ollama
+tqdm
+scikit-learn
+numpy
+pandas
+groq
+together
+torch
+transformers
+wandb
+trl
