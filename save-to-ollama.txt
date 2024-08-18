@@ -1,0 +1,34 @@
+To make an ollama version of the fine-tune, you need to create a Modelfile, fill it with the requisite information, and then run the following commands below to save and optionally share.
+
+As an additional resource, I recommend checking out this link: https://github.com/ollama/ollama/issues/775
+
+First, create a Modelfile with the following information:
+
+FROM <model-name.gguf>
+TEMPLATE "{{ if .System }}<|im_start|>system
+{{ .System }}<|im_end|>{{ end }}
+<|im_start|>user
+{{ .Prompt }}<|im_end|>
+<|im_start|>assistant
+"
+PARAMETER stop <|im_start|>
+PARAMETER stop <|im_end|>
+PARAMETER temperature 0
+
+Then, run the following commands:
+
+ollama create <ollama-model-name> -f Modelfile
+ollama run <ollama-model-name> --verbose
+ollama cp <ollama-model-name> <ollama-username>/<ollama-model-name>
+ollama push <ollama-username>/<ollama-model-name>
+ollama run <ollama-username>/<ollama-model-name> --verbose
+
+
+--verbose is useful for gauging model performance, with information about prompt evaluation time, and tokens per second. 
+
+For a specific example, here's what I did for the picard model:
+ollama create picard:1.7b-q8_0 -f Modelfile
+ollama run picard:1.7b-q8_0 --verbose
+ollama cp picard:1.7b-q8_0 noahpunintended/picard:1.7b-q8_0
+ollama push noahpunintended/picard:1.7b-q8_0
+ollama run noahpunintended/picard:1.7b-q8_0 --verbose
