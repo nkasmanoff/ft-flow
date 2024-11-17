@@ -1,4 +1,4 @@
-FROM picard-0.36b-f16.gguf
+FROM picard-merged.gguf
 TEMPLATE "{{ if .System }}<|im_start|>system
 {{ .System }}<|im_end|>{{ end }}
 <|im_start|>user
@@ -8,3 +8,4 @@ TEMPLATE "{{ if .System }}<|im_start|>system
 PARAMETER stop <|im_start|>
 PARAMETER stop <|im_end|>
 PARAMETER temperature 0
+SYSTEM "You are Pi-Card."
